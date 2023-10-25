@@ -128,6 +128,48 @@ function Payment({ price }) {
     pay.open();
   };
 
+
+  const payWithMonnify = () => {
+    MonnifySDK.initialize({
+      amount: price * quantity,
+      currency: "NGN",
+      reference: '' + Math.floor((Math.random() * 1000000000) + 1),
+      customerName: name,
+      customerEmail: email,
+      apiKey: "MK_TEST_1TVK38BX4U",
+      contractCode: "2436082229",
+      paymentDescription: "Test Pay",
+      isTestMode: true,
+      metadata: {
+        "name": "Damilare",
+        "age": 45
+      },
+      paymentMethods: ["CARD", "ACCOUNT_TRANSFER"],
+      // incomeSplitConfig: [
+      //   {
+      //     "subAccountCode": "MFY_SUB_342113621921",
+      //     "feePercentage": 50,
+      //     "splitAmount": 1900,
+      //     "feeBearer": true
+      //   },
+      //   {
+      //     "subAccountCode": "MFY_SUB_342113621922",
+      //     "feePercentage": 50,
+      //     "splitAmount": 2100,
+      //     "feeBearer": true
+      //   }
+      // ],
+      onComplete: function (response) {
+        // Implement what happens when the transaction is completed.
+        console.log(response);
+      },
+      onClose: function (data) {
+        // Implement what should happen when the modal is closed here
+        console.log(data);
+      }
+    });
+  }
+
   return (
     <>
       <div className="pt-5 mb-9">
@@ -180,7 +222,7 @@ function Payment({ price }) {
               setName={setName}
               setEmail={setEmail}
               setPhoneNumber={setPhoneNumber}
-              buyNow={buyNow}
+              buyNow={payWithMonnify}
             />
           </div>
         </div>
