@@ -5,16 +5,16 @@ import { toast } from 'react-toastify';
 import { fireDB } from '../../fireabase/FirebaseConfig';
 
 function myState(props) {
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState('dark');
 
     const toggleMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            document.body.style.backgroundColor = "rgb(17, 24, 39)"
-        }
-        else {
+        if (mode === 'dark') {
             setMode('light');
             document.body.style.backgroundColor = "white"
+        }
+        else {
+            setMode('dark');
+            document.body.style.backgroundColor = "rgb(17, 24, 39)"
         }
     }
 
@@ -26,19 +26,12 @@ function myState(props) {
         imageUrl: null,
         category: null,
         description: null,
-        time: Timestamp.now(),
-        date: new Date().toLocaleString(
-            "en-US",
-            {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-            }
-        )
+        time: null,
+        date: null,
     });
 
-    const addProduct = async () => {
-        if (products.title == null || products.price == null || products.imageUrl == null || products.category == null || products.description == null) {
+    const addMovie = async () => {
+        if (products.title == null || products.price == null || products.imageUrl == null || products.date == null || products.time == null || products.category == null || products.description == null) {
             return toast.error("all fields are required")
         }
 
@@ -71,7 +64,7 @@ function myState(props) {
         try {
             const q = query(
                 collection(fireDB, 'products'),
-                orderBy('time')
+                // orderBy('time')
             );
 
             const data = onSnapshot(q, (QuerySnapshot) => {
@@ -102,7 +95,7 @@ function myState(props) {
         setProducts(item)
     }
 
-    const updateProduct = async () => {
+    const updateMovie = async () => {
         setLoading(true)
         try {
 
@@ -122,7 +115,7 @@ function myState(props) {
 
     // delete product
 
-    const deleteProduct = async (item) => {
+    const deleteMovie = async (item) => {
         setLoading(true)
         try {
             await deleteDoc(doc(fireDB, 'products', item.id))
@@ -188,10 +181,10 @@ function myState(props) {
     return (
         <MyContext.Provider value={{
             mode, toggleMode, loading, setLoading,
-            products, setProducts, addProduct, product,
-            edithandle, updateProduct, deleteProduct, order,
-            user, searchkey, setSearchkey,filterType,setFilterType,
-            filterPrice,setFilterPrice
+            products, setProducts, addMovie, product,
+            edithandle, updateMovie, deleteMovie, order,
+            user, searchkey, setSearchkey, filterType, setFilterType,
+            filterPrice, setFilterPrice
         }}>
             {props.children}
         </MyContext.Provider>

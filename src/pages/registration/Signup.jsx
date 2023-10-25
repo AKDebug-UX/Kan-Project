@@ -38,6 +38,7 @@ function Signup() {
             setName("");
             setEmail("");
             setPassword("");
+            navigate('/')
             setLoading(false)
             
         } catch (error) {

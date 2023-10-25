@@ -30,16 +30,16 @@ function ProductCard() {
                     <div class="h-1 w-20 bg-pink-600 rounded"></div>
                 </div>
 
-                <div className="flex flex-wrap -m-4">
+                <div className="flex flex-wrap -m-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {product.filter((obj) => obj.title.toLowerCase().includes(searchkey))
                         .filter((obj) => obj.category.toLowerCase().includes(filterType))
                         .filter((obj) => obj.price.includes(filterPrice)).slice(0, 8).map((item, index) => {
                             const { title, price, description, imageUrl, id } = item;
                             return (
-                                <div key={index} className="p-4 md:w-2/5  drop-shadow-lg " >
-                                    <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out    border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
+                                <div key={index} className="p-4 w-full drop-shadow-lg" >
+                                    <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                         <div onClick={() => window.location.href = `/ticketsinfo/${id}`} className="flex justify-center cursor-pointer" >
-                                            <img className=" rounded-2xl w-full h-[270px] p-2 hover:scale-110 transition-scale-110  duration-300 ease-in-out" src={imageUrl} alt="blog" />
+                                            <img className="rounded-2xl w-full h-[270px] p-2 hover:scale-110 transition-scale-110 duration-300 ease-in-out" src={imageUrl} alt="blog" />
                                         </div>
                                         <div className="p-5 border-t-2">
                                             <h2 className="text-[9px] italic title-font text-indigo-500 tracking-widest"> Kan Cinema</h2>
@@ -58,10 +58,6 @@ function ProductCard() {
                                 </div>
                             )
                         })}
-
-
-
-
                 </div>
 
             </div>

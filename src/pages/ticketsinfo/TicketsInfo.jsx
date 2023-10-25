@@ -138,12 +138,16 @@ function TicketsInfo() {
 
                 <div className="mb-2 text-black flex items-center justify-start gap-9 w-full" style={{ color: mode === 'dark' ? 'white' : '' }}>
                   <div className="flex-col justify-center items-center">
+                    <p className="font-bold">Category</p>
+                    <p className="">{products.category}</p>
+                  </div>
+                  <div className="flex-col justify-center items-center">
                     <p className="font-bold">Date</p>
-                    <p className="">Today</p>
+                    <p className="">{products.date}</p>
                   </div>
                   <div className="flex-col justify-center items-center">
                     <p className="font-bold">Showtime</p>
-                    <p className="">8:15 AM</p>
+                    <p className="">{products.time}</p>
                   </div>
                 </div>
 

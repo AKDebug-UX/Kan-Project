@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux';
+// import { Tooltip } from "@mui/material";
+import SignOut from "../../assets/logout-box-line.svg";
 
 function Navbar() {
   const context = useContext(myContext);
@@ -64,7 +66,7 @@ function Navbar() {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
 
                   <Link to={'/buy-tickets'} className="text-sm font-medium text-gray-900 " style={{ color: mode === 'dark' ? 'white' : '', }}>
-                    All Products
+                    Buy tickets
                   </Link>
 
                   {user ? <div className="flow-root">
@@ -73,7 +75,7 @@ function Navbar() {
                     </Link>
                   </div> : ""}
 
-                  {user?.user?.email === "knupadhyay784@gmail.com" ? <div className="flow-root">
+                  {user?.user?.email === "akoredesalaudeen54@gmail.com" ? <div className="flow-root">
                     <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       admin
                     </Link>
@@ -95,18 +97,6 @@ function Navbar() {
                         src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
                         alt="Dan_Abromov" />                                        </Link>
                   </div>
-                </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="img/indiaflag.png"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -174,9 +164,9 @@ function Navbar() {
 
                 <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
-                    {mode === 'light' ?
+                    {mode === 'dark' ?
                       (<FiSun className='' size={30} />
-                      ) : 'dark' ?
+                      ) : 'light' ?
                         (<BsFillCloudSunFill size={30} />
                         ) : ''}
                   </button>
@@ -195,7 +185,9 @@ function Navbar() {
                 </div>
 
                 {user ? <a onClick={logout} className="text-sm font-medium text-gray-700 cursor-pointer  " style={{ color: mode === 'dark' ? 'white' : '', }}>
-                  Logout
+                  {/* <Tooltip title="Sign Out" placement="bottom-end" followCursor arrow> */}
+                  <img src={SignOut} alt="" />
+                  {/* </Tooltip> */}
                 </a> : ""}
               </div>
             </div>
