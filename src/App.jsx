@@ -14,19 +14,19 @@ import NoPage from './pages/nopage/NoPage';
 import MyState from './context/data/myState';
 import Login from './pages/registration/Login';
 import Signup from './pages/registration/Signup';
-import ProductInfo from './pages/productInfo/ProductInfo';
+import TicketsInfo from './pages/ticketsinfo/TicketsInfo';
 import AddProduct from './pages/admin/page/AddProduct';
 import UpdateProduct from './pages/admin/page/UpdateProduct';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Allproducts from './pages/allproducts/Allproducts';
+import BuyTickets from './pages/buy-tickets/BuyTickets';
 function App() {
   return (
     <MyState>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/allproducts" element={<Allproducts />} />
+          <Route path="/buy-tickets" element={<BuyTickets />} />
           <Route path="/order" element={
             <ProtectedRoute>
               <Order />
@@ -40,7 +40,7 @@ function App() {
           } />
           <Route path='/login' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
-          <Route path='/productinfo/:id' element={<ProductInfo/>} />
+          <Route path='/ticketsinfo/:id' element={<TicketsInfo/>} />
           <Route path='/addproduct' element={
             <ProtectedRouteForAdmin>
               <AddProduct/>
