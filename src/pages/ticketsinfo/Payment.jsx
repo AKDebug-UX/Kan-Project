@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import myContext from '../../context/data/myContext';
-import Layout from '../../components/layout/Layout';
 import Modal2 from '../../components/modal/Modal2';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
-import { addDoc, collection } from 'firebase/firestore';
-import { fireDB } from '../../fireabase/FirebaseConfig';
 
 function Payment({ price }) {
   const context = useContext(myContext);
@@ -51,81 +48,6 @@ function Payment({ price }) {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
-  };
-
-  const buyNow = async () => {
-    if (name === '' || email === '' || phoneNumber === '') {
-      return toast.error('All fields are required', {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-    }
-
-    const addressInfo = {
-      name,
-      email,
-      phoneNumber,
-      date: new Date().toLocaleString(
-        'en-US',
-        {
-          month: 'short',
-          day: '2-digit',
-          year: 'numeric',
-        }
-      ),
-    };
-
-    var options = {
-      key: '',
-      key_secret: '',
-      amount: price * quantity, // Updated price based on quantity
-      currency: 'INR',
-      order_receipt: 'order_rcptid_' + name,
-      name: 'E-Bharat',
-      description: 'for testing purpose',
-      handler: function (response) {
-        console.log(response);
-        toast.success('Payment Successful');
-
-        const paymentId = response.razorpay_payment_id;
-
-        const orderInfo = {
-          cartItems,
-          addressInfo,
-          date: new Date().toLocaleString(
-            'en-US',
-            {
-              month: 'short',
-              day: '2-digit',
-              year: 'numeric',
-            }
-          ),
-          email: JSON.parse(localStorage.getItem('user')).user.email,
-          userid: JSON.parse(localStorage.getItem('user')).user.uid,
-          paymentId,
-        };
-
-        try {
-          const orderRef = collection(fireDB, 'order');
-          addDoc(orderRef, orderInfo);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-
-      theme: {
-        color: '#3399cc',
-      },
-    };
-
-    var pay = new window.Razorpay(options);
-    pay.open();
   };
 
 
