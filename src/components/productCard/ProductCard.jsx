@@ -34,7 +34,7 @@ function ProductCard() {
                     {product.filter((obj) => obj.title.toLowerCase().includes(searchkey))
                         .filter((obj) => obj.category.toLowerCase().includes(filterType))
                         .filter((obj) => obj.price.includes(filterPrice)).slice(0, 8).map((item, index) => {
-                            const { title, price, description, imageUrl, id } = item;
+                            const { title, price, description, imageUrl, id, category, date, time } = item;
                             return (
                                 <div key={index} className="p-4 w-full drop-shadow-lg" >
                                     <div className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out border-gray-200 border-opacity-60 rounded-2xl overflow-hidden" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
@@ -43,15 +43,30 @@ function ProductCard() {
                                         </div>
                                         <div className="p-5 border-t-2">
                                             <h2 className="text-[9px] italic title-font text-indigo-500 tracking-widest"> Kan Cinema</h2>
-                                            <h1 className="title-font text-lg font-medium text-gray-900 mb-3" style={{ color: mode === 'dark' ? 'white' : '', }}>{title}</h1>
+                                            <h1 className="title-font text-lg font-medium text-gray-900 mb-1" style={{ color: mode === 'dark' ? 'white' : '', }}>{title}</h1>
                                             {/* <p className="leading-relaxed mb-3">{item.description.}</p> */}
-                                            <p className="leading-relaxed mb-3" style={{ color: mode === 'dark' ? 'white' : '' }}>₦{price}</p>
-                                            <div className=" flex justify-center">
+                                            <p className="font-bold flex leading-relaxed mb-1 justify-start items-end" style={{ color: mode === 'dark' ? 'white' : '' }}>₦{price}</p>
+
+                                            <div className="mb-1 text-black flex items-center justify-start gap-3 w-full" style={{ color: mode === 'dark' ? 'white' : '' }}>
+                                                <div className="flex-col justify-center items-center">
+                                                    <p className="font-bold text-[12px]">Category</p>
+                                                    <p className="text-[10px]">{category}</p>
+                                                </div>
+                                                <div className="flex-col justify-center items-center">
+                                                    <p className="font-bold text-[12px]">Date</p>
+                                                    <p className="text-[10px]">{date}</p>
+                                                </div>
+                                                <div className="flex-col justify-center items-center">
+                                                    <p className="font-bold text-[12px]">Showtime</p>
+                                                    <p className="text-[10px]">{time}</p>
+                                                </div>
+                                            </div>
+                                            {/* <div className=" flex justify-center">
                                                 <button type="button"
                                                     onClick={() => addCart(item)}
                                                     className="focus:outline-none text-white bg-pink-600 hover:bg-pink-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2">Add To Cart</button>
 
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                     </div>

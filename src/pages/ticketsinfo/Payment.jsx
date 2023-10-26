@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import myContext from '../../context/data/myContext';
 import Layout from '../../components/layout/Layout';
-import Modal from '../../components/modal/Modal';
+import Modal2 from '../../components/modal/Modal2';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
@@ -172,25 +172,25 @@ function Payment({ price }) {
 
   return (
     <>
-      <div className="pt-5 mb-9">
+      <div className="p-6">
         <div className="mx-auto max-w-6xl justify-center px-6 md:space-x-6 xl:px-0">
-          <div className="mt-6 h-full rounded-lg bg-black p-6 shadow-md md:mt-0 md:w-1/2">
-            <div className="mb-2 text-white flex justify-between w-full">
+          <div className="">
+            <div className="mb-2 text-black flex justify-between w-full">
               <p>Subtotal</p>
               <p>₦{price}.00</p>
             </div>
             <hr className="my-4" />
-            <div className="mb-2 text-white flex justify-between w-full">
+            <div className="mb-2 text-black flex justify-between w-full">
               <p>Popcorn</p>
               <p>₦0.00</p>
             </div>
             <hr className="my-4" />
-            <div className="mb-2 text-white flex justify-between w-full">
+            <div className="mb-2 text-black flex justify-between w-full">
               <p>Drink</p>
               <p>₦0.00</p>
             </div>
             <hr className="my-4" />
-            <div className="mb-2 text-white flex justify-between w-full">
+            <div className="mb-2 text-black flex justify-between w-full">
               <p>Quantity</p>
               <div className="flex items-center">
                 <button
@@ -209,13 +209,13 @@ function Payment({ price }) {
               </div>
             </div>
             <hr className="my-4" />
-            <div className="flex justify-between text-white mb-3">
+            <div className="flex justify-between text-black mb-3">
               <p className="text-lg font-bold">Total</p>
               <div className="">
                 <p className="mb-1 text-lg font-bold">₦{price * quantity}.00</p>
               </div>
             </div>
-            <Modal
+            <Modal2
               name={name}
               email={email}
               phoneNumber={phoneNumber}

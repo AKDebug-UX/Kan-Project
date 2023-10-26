@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { addToCart } from '../../redux/cartSlice';
 import { fireDB } from '../../fireabase/FirebaseConfig';
 import Payment from './Payment';
+import Modal from '../../components/modal/Modal';
 
 function TicketsInfo() {
   const context = useContext(myContext);
@@ -155,18 +156,16 @@ function TicketsInfo() {
                   {products.description}
                 </p>
 
-                <div className="flex">
+                <div className="flex justify-between items-center">
                   <span className="title-font font-medium text-2xl text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>
                     ₦{products.price}
                   </span>
-                  <button onClick={() => addCart(products)} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                    Add To Cart
-                  </button>
+                  <Modal price={products.price}/>
                 </div>
               </div>
             </div>}
         </div>
-        <Payment price={products.price} />
+        {/* <Payment price={products.price} /> */}
       </section>
     </Layout>
   )
