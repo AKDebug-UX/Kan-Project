@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function Payment({ price }) {
   const context = useContext(myContext);
-  const { mode } = context;
+  const { mode, setOrder } = context;
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart);
@@ -82,11 +82,11 @@ function Payment({ price }) {
       //   }
       // ],
       onComplete: function (response) {
-        // Implement what happens when the transaction is completed.
-        console.log(response);
+        // console.log(response);
+        setOrder(response);
+        localStorage.setItem('responseBody', JSON.stringify(response));
       },
       onClose: function (data) {
-        // Implement what should happen when the modal is closed here
         console.log(data);
       }
     });

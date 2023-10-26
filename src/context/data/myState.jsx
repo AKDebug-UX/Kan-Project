@@ -182,7 +182,7 @@ function myState(props) {
         <MyContext.Provider value={{
             mode, toggleMode, loading, setLoading,
             products, setProducts, addMovie, product,
-            edithandle, updateMovie, deleteMovie, order,
+            edithandle, updateMovie, deleteMovie, order, setOrder,
             user, searchkey, setSearchkey, filterType, setFilterType,
             filterPrice, setFilterPrice
         }}>
